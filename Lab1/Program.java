@@ -1,3 +1,4 @@
+package Lab1;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
