@@ -8,6 +8,7 @@ import lab3.MatrixMultip;
 
 public class Program {
 
+
     public int[][] generateMatrix(int rows, int cols) {
         int[][] matrix = new int[rows][cols];
         for (int i = 0; i < rows; i++) {
@@ -22,7 +23,7 @@ public class Program {
         int[][] m1 = new Program().generateMatrix(10, 10);
         int[][] m2 = new Program().generateMatrix(10, 10);
 
-        MatrixMultip matrixMultip = new MatrixMultip(m1, m2, 2);
+        MatrixMultip matrixMultip = new MatrixMultip(m1, m2, 4);
         long startTime = System.nanoTime();
         Thread[] threads = new Thread[matrixMultip.tasks];
         for (int i = 0; i < matrixMultip.tasks; i++) {

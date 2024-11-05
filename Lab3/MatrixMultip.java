@@ -17,11 +17,9 @@ public class MatrixMultip {
     public int calculate(int row, int col)
     {
         int n = m1[0].length;
-        
-        // Initialize the value of the result element at (row, col)
+
         int resultElement = 0;
 
-        // Calculate the dot product of the row of matrixA and the column of matrixB
         for (int k = 0; k < n; k++) {
             resultElement += m1[row][k] * m2[k][col];
         }
