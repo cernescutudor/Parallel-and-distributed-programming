@@ -36,38 +36,38 @@ public class Program {
         endTime = System.currentTimeMillis();
         System.out.println("Time taken for parallel multiplication: " + (endTime - startTime) + "ms");
 
-        nm.resetResult();
-        long startTimeKaratsuba = System.currentTimeMillis();
-        nm.karatsubaMultiply();
-        long endTimeKaratsuba = System.currentTimeMillis();
-        System.out.println("Time taken for Karatsuba multiplication: " + (endTimeKaratsuba - startTimeKaratsuba) + "ms");
+        // nm.resetResult();
+        // long startTimeKaratsuba = System.currentTimeMillis();
+        // nm.karatsubaMultiply();
+        // long endTimeKaratsuba = System.currentTimeMillis();
+        // System.out.println("Time taken for Karatsuba multiplication: " + (endTimeKaratsuba - startTimeKaratsuba) + "ms");
 
-        nm.resetResult();
-        Thread[] threadsKaratsuba = new Thread[noThreads];
-        startTimeKaratsuba = System.currentTimeMillis();
-        for (int i = 0; i < noThreads; i++) {
-            int threadIndex = i;
-            threadsKaratsuba[i] = new Thread(() -> {
-                nm.karatsubaMultiplyParallel(threadIndex, noThreads);
-            });
-            threadsKaratsuba[i].start();
-        }
-        for (int i = 0; i < noThreads; i++) {
-            try {
-                threadsKaratsuba[i].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        endTimeKaratsuba = System.currentTimeMillis();
-        System.out.println("Time taken for parallel Karatsuba multiplication: " + (endTimeKaratsuba - startTimeKaratsuba) + "ms");
+        // nm.resetResult();
+        // Thread[] threadsKaratsuba = new Thread[noThreads];
+        // startTimeKaratsuba = System.currentTimeMillis();
+        // for (int i = 0; i < noThreads; i++) {
+        //     int threadIndex = i;
+        //     threadsKaratsuba[i] = new Thread(() -> {
+        //         nm.karatsubaMultiplyParallel(threadIndex, noThreads);
+        //     });
+        //     threadsKaratsuba[i].start();
+        // }
+        // for (int i = 0; i < noThreads; i++) {
+        //     try {
+        //         threadsKaratsuba[i].join();
+        //     } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        //     }
+        // }
+        // endTimeKaratsuba = System.currentTimeMillis();
+        // System.out.println("Time taken for parallel Karatsuba multiplication: " + (endTimeKaratsuba - startTimeKaratsuba) + "ms");
 
     }
 
     
     public static void main(String[] args) {
         
-        NaiveMultiplication(10000, 10);
+        NaiveMultiplication(100000, 10);
         
         
     }
