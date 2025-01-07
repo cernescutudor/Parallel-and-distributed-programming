@@ -15,8 +15,8 @@ namespace ConsoleApp
     {
         static async Task Main(string[] args)
         {
-            string host = "sepse.ro";
-            string path = "/st/repartitoare.html";
+            string host = "www.cs.ubbcluj.ro";
+            string path = "/~rlupsa/edu/pdp/lab-4-futures-continuations.html";
 
             EventDrivenDownloader downloader1 = new EventDrivenDownloader(host, path);
 

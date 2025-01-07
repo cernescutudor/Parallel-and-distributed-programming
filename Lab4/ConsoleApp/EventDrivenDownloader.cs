@@ -18,9 +18,9 @@ namespace ConsoleApp
         private readonly string _path;
         private readonly Socket _socket;
         private readonly byte[] _buffer = new byte[1024];
-        private int _contentLength = -1; // in bytes 
-        private int _receivedLength = 0; // in bytes
-        private bool _headersComplete = false; // if the parsing of the headers is complete
+        private int _contentLength = -1; 
+        private int _receivedLength = 0; 
+        private bool _headersComplete = false; 
         private StringBuilder _headers = new StringBuilder();
 
         public EventDrivenDownloader(string host, string path)
@@ -61,7 +61,7 @@ namespace ConsoleApp
 
         private void OnReceive(IAsyncResult ar)
         {
-            int bytesReceived = _socket.EndReceive(ar); // complete the receive
+            int bytesReceived = _socket.EndReceive(ar); 
             if (bytesReceived > 0)
             {
                 string responsePart = Encoding.ASCII.GetString(_buffer, 0, bytesReceived);

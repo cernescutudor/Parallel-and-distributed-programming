@@ -10,10 +10,10 @@ namespace ConsoleApp
         private readonly string _host;
         private readonly string _path;
         private readonly Socket _socket;
-        private readonly byte[] _buffer = new byte[1024]; // Buffer for incoming data
-        private bool _headersComplete = false; // Track if headers are fully received
-        private StringBuilder _headers = new StringBuilder(); // To accumulate header data
-        private int _contentLength = -1; // Expected content length from headers
+        private readonly byte[] _buffer = new byte[1024]; 
+        private bool _headersComplete = false; 
+        private StringBuilder _headers = new StringBuilder(); 
+        private int _contentLength = -1; 
 
         public TaskBasedDownloader(string host, string path)
         {
@@ -88,7 +88,7 @@ namespace ConsoleApp
 
         private Task ReceiveHeadersAsync()
         {
-            var tcs = new TaskCompletionSource<bool>(); // Renamed to avoid conflict
+            var tcs = new TaskCompletionSource<bool>(); 
 
             void ReceiveCallback()
             {
@@ -97,7 +97,7 @@ namespace ConsoleApp
                     int bytesReceived = receiveResultTask.Result;
                     if (bytesReceived > 0 && !_headersComplete)
                     {
-                        // Convert received bytes to a string and accumulate to headers
+                       
                         string responsePart = Encoding.ASCII.GetString(_buffer, 0, bytesReceived);
                         _headers.Append(responsePart);
 
@@ -107,25 +107,25 @@ namespace ConsoleApp
                         {
                             _headersComplete = true;
 
-                            // Extract headers up to the end index and parse for Content-Length
+                            
                             string headerSection = _headers.ToString().Substring(0, headersEndIndex);
                             ParseHeaders(headerSection);
 
-                            // Complete the task when headers are received and parsed
-                            tcs.SetResult(true);  // Use tcs to set result
+                            
+                            tcs.SetResult(true);  
                         }
                         else
                         {
-                            // If headers aren't complete, continue receiving
+                           
                             ReceiveCallback();
                         }
                     }
                 });
             }
 
-            // Start receiving
+            
             ReceiveCallback();
-            return tcs.Task;  // Return the Task created by TaskCompletionSource
+            return tcs.Task; 
         }
 
         private Task<int> ReceiveAsync()
